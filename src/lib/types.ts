@@ -30,6 +30,8 @@ export interface Opening {
   // ---- 상세 페이지 콘텐츠 (선택) ----
   /** 포지션 소개 문단 */
   description?: string;
+  /** 포지션의 매력 */
+  appeal?: string[];
   /** 주요 업무 */
   responsibilities?: string[];
   /** 자격 요건 */
