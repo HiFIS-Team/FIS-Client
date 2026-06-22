@@ -1,24 +1,17 @@
-import { Media } from "@/components/ui/Media";
+import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import { Container } from "@/components/ui/Container";
 import { site } from "@/data/site";
 
 export function Hero() {
   const { hero } = site;
   return (
-    <section id="top" className="relative isolate min-h-[88vh] overflow-hidden bg-neutral-950 text-white">
-      {/* 배경 이미지 / 플레이스홀더 */}
-      <Media
-        src={hero.image}
-        alt="피트니스스타 채용"
-        label="히어로 배경 이미지"
-        className="absolute inset-0 -z-10 h-full w-full"
-        sizes="100vw"
-        priority
-      />
+    <section id="top" className="relative isolate min-h-[68vh] overflow-hidden bg-neutral-950 text-white">
+      {/* 배경 슬라이드쇼 (자동 전환) */}
+      <HeroSlideshow images={hero.images} interval={hero.interval} />
       {/* 가독성을 위한 어둡게 처리 */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/40" />
 
-      <Container className="flex min-h-[88vh] flex-col justify-center py-32">
+      <Container className="flex min-h-[68vh] flex-col justify-center py-24">
         <span className="mb-5 w-fit rounded-full border border-brand/50 bg-brand/10 px-4 py-1.5 text-sm font-semibold text-brand">
           {hero.badge}
         </span>

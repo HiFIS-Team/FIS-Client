@@ -29,7 +29,14 @@ export const site = {
     subtitle: "피트니스스타는 대한민국 피트니스 시장을 혁신하는 브랜드입니다.",
     primaryCta: { label: "채용 공고 보기", href: "#openings" },
     secondaryCta: { label: "브랜드 알아보기", href: "#brands" },
-    image: "", // /images/hero.jpg
+    /**
+     * 배경 슬라이드쇼 이미지들 (자동 전환).
+     * 빈 문자열("")은 그라데이션 placeholder로 표시됩니다.
+     * 실제 사진을 넣으려면 "/images/hero-1.jpg" 처럼 경로를 적으세요.
+     */
+    images: ["", "", ""] as string[],
+    /** 슬라이드 전환 간격(ms) */
+    interval: 5000,
   },
 
   mission: {
