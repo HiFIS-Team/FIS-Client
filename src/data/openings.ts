@@ -1,0 +1,93 @@
+import type { Opening } from "@/lib/types";
+
+/**
+ * 채용 공고 목록.
+ * 공고를 추가/삭제하려면 이 배열만 수정하면 됩니다.
+ * group 값은 site.ts의 jobGroups 키(office/field/coach)와 매칭됩니다.
+ */
+export const openings: Opening[] = [
+  {
+    id: "brand-designer",
+    title: "브랜드 디자이너 (BX)",
+    group: "office",
+    job: "디자인",
+    location: "서울 본사",
+    employment: "정규직",
+    career: "경력",
+    summary: "피트니스스타의 브랜드 경험을 시각 언어로 설계합니다.",
+    hot: true,
+  },
+  {
+    id: "marketing-pm",
+    title: "퍼포먼스 마케터",
+    group: "office",
+    job: "마케팅",
+    location: "서울 본사",
+    employment: "정규직",
+    career: "경력",
+    summary: "데이터 기반으로 신규 회원 유입과 브랜드 성장을 이끕니다.",
+    hot: true,
+  },
+  {
+    id: "service-planner",
+    title: "서비스 기획자 (PM)",
+    group: "office",
+    job: "기획",
+    location: "서울 본사",
+    employment: "정규직",
+    career: "경력무관",
+    summary: "회원 경험을 처음부터 끝까지 설계하고 개선합니다.",
+  },
+  {
+    id: "hr-manager",
+    title: "인사 담당자 (HR)",
+    group: "office",
+    job: "경영지원",
+    location: "서울 본사",
+    employment: "정규직",
+    career: "신입",
+    summary: "최고의 팀을 만드는 채용과 조직문화를 담당합니다.",
+  },
+  {
+    id: "center-manager",
+    title: "센터 매니저",
+    group: "field",
+    job: "운영",
+    location: "서울 전지점",
+    employment: "정규직",
+    career: "경력무관",
+    summary: "현장 회원 경험과 지점 성과를 직접 만들어냅니다.",
+    hot: true,
+  },
+  {
+    id: "space-developer",
+    title: "공간개발 매니저",
+    group: "field",
+    job: "공간개발",
+    location: "서울 본사",
+    employment: "정규직",
+    career: "경력",
+    summary: "새로운 지점을 발굴하고 최고의 운동 공간을 만듭니다.",
+  },
+  {
+    id: "coach",
+    title: "피트니스 코치",
+    group: "coach",
+    job: "코칭",
+    location: "서울 전지점",
+    employment: "정규직",
+    career: "경력무관",
+    summary: "수업으로 회원의 몸과 마음의 건강에 직접 기여합니다.",
+    hot: true,
+  },
+  {
+    id: "part-crew",
+    title: "지점 크루 (파트타임)",
+    group: "coach",
+    job: "운영",
+    location: "서울 전지점",
+    employment: "파트타임",
+    career: "신입",
+    summary: "현장에서 회원을 가장 가까이서 응대하는 첫 얼굴입니다.",
+  },
+];

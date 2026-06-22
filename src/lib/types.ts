@@ -1,0 +1,29 @@
+// 채용 공고 도메인 타입 정의
+
+export type EmploymentType = "정규직" | "계약직" | "인턴" | "파트타임";
+
+export type CareerType = "신입" | "경력" | "경력무관";
+
+/** 직군 — 공고를 묶는 큰 단위 (필터/직군 소개 섹션과 매칭) */
+export type JobGroupKey = "office" | "field" | "coach";
+
+export interface Opening {
+  /** URL/식별용 슬러그 */
+  id: string;
+  /** 공고 제목 */
+  title: string;
+  /** 직군 */
+  group: JobGroupKey;
+  /** 세부 직무 (예: 브랜드 디자이너) */
+  job: string;
+  /** 근무지 */
+  location: string;
+  employment: EmploymentType;
+  career: CareerType;
+  /** 카드에 노출되는 한 줄 요약 */
+  summary: string;
+  /** 상단 강조(🔥) 여부 */
+  hot?: boolean;
+  /** 지원 링크 (외부 폼/메일). 비우면 기본 채용 메일로 연결 */
+  applyUrl?: string;
+}
