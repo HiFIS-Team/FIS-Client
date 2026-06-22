@@ -26,4 +26,14 @@ export interface Opening {
   hot?: boolean;
   /** 지원 링크 (외부 폼/메일). 비우면 기본 채용 메일로 연결 */
   applyUrl?: string;
+
+  // ---- 상세 페이지 콘텐츠 (선택) ----
+  /** 포지션 소개 문단 */
+  description?: string;
+  /** 주요 업무 */
+  responsibilities?: string[];
+  /** 자격 요건 */
+  qualifications?: string[];
+  /** 우대 사항 */
+  preferred?: string[];
 }

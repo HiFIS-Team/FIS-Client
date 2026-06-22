@@ -1,16 +1,10 @@
+import Link from "next/link";
 import type { Opening } from "@/lib/types";
-import { site } from "@/data/site";
 
 export function OpeningCard({ opening }: { opening: Opening }) {
-  const href =
-    opening.applyUrl ??
-    `mailto:${site.brand.email}?subject=[지원] ${opening.title}`;
-
   return (
-    <a
-      href={href}
-      target={opening.applyUrl ? "_blank" : undefined}
-      rel={opening.applyUrl ? "noopener noreferrer" : undefined}
+    <Link
+      href={`/openings/${opening.id}`}
       className="group flex flex-col justify-between rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-brand hover:shadow-lg"
     >
       <div>
@@ -42,6 +36,6 @@ export function OpeningCard({ opening }: { opening: Opening }) {
           </span>
         ))}
       </div>
-    </a>
+    </Link>
   );
 }
