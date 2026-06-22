@@ -1,16 +1,20 @@
 import { type ReactNode } from "react";
 import { Container } from "./Container";
+import { Reveal } from "./Reveal";
 
 export function Section({
   id,
   children,
   className = "",
   dark = false,
+  reveal = true,
 }: {
   id?: string;
   children: ReactNode;
   className?: string;
   dark?: boolean;
+  /** 스크롤 진입 시 페이드업 (기본 on) */
+  reveal?: boolean;
 }) {
   return (
     <section
@@ -19,7 +23,7 @@ export function Section({
         dark ? "bg-neutral-950 text-white" : "bg-white text-neutral-900"
       } ${className}`}
     >
-      <Container>{children}</Container>
+      <Container>{reveal ? <Reveal>{children}</Reveal> : children}</Container>
     </section>
   );
 }

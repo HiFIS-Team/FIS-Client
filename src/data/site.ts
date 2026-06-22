@@ -19,10 +19,10 @@ export const site = {
   },
 
   nav: [
-    { label: "브랜드", href: "#brands" },
-    { label: "조직문화", href: "#culture" },
-    { label: "직군 소개", href: "#groups" },
-    { label: "채용 공고", href: "#openings" },
+    { label: "브랜드", href: "/#brands" },
+    { label: "조직문화", href: "/#culture" },
+    { label: "직군 소개", href: "/#groups" },
+    { label: "채용 공고", href: "/#openings" },
   ],
 
   hero: {
