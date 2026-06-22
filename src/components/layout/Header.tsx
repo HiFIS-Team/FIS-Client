@@ -1,13 +1,27 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Link href="#top" className="text-lg font-extrabold tracking-tight text-white">
-          {site.brand.name}
-          <span className="ml-1 text-brand">★</span>
+        <Link href="#top" className="flex items-center">
+          {site.brand.logo ? (
+            <Image
+              src={site.brand.logo}
+              alt={site.brand.name}
+              width={180}
+              height={40}
+              priority
+              className="h-10 w-auto object-contain"
+            />
+          ) : (
+            <span className="text-lg font-extrabold tracking-tight text-white">
+              {site.brand.name}
+              <span className="ml-1 text-brand">★</span>
+            </span>
+          )}
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">

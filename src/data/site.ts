@@ -12,8 +12,8 @@ export const site = {
     nameEn: "FITNESS STAR",
     /** 채용 문의 메일 */
     email: "recruit@fitnessstar.co.kr",
-    /** 헤더 로고 이미지 (없으면 텍스트 로고) */
-    logo: "",
+    /** 헤더/푸터 로고 (어두운 배경용 흰색 로고, 투명 배경). 비우면 텍스트 로고 */
+    logo: "/images/logo-white.png",
   },
 
   nav: [
