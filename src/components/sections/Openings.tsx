@@ -28,10 +28,10 @@ function FilterRow<T extends string>({
   options: { key: T; label: string }[];
   onChange: (key: T) => void;
 }) {
-  // 그리드 셀 2개(라벨 + 칩)를 반환해 줄마다 열을 맞춤
+  // 모바일: 라벨 위/칩 아래 / sm 이상: 라벨 왼쪽 + 칩 오른쪽
   return (
-    <>
-      <span className="self-center text-sm font-semibold text-neutral-400 sm:text-right">
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+      <span className="text-sm font-semibold text-neutral-400 sm:w-16 sm:shrink-0 sm:pt-2 sm:text-right">
         {label}
       </span>
       <div className="flex flex-wrap gap-2">
@@ -53,7 +53,7 @@ function FilterRow<T extends string>({
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -109,15 +109,15 @@ export function Openings() {
       </div>
 
       {/* 필터 카드 */}
-      <div className="mx-auto mt-10 w-fit max-w-full rounded-2xl border border-neutral-200 bg-neutral-50 px-6 py-6 sm:px-10">
-        <div className="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-3">
+      <div className="mx-auto mt-10 w-full max-w-xl rounded-2xl border border-neutral-200 bg-neutral-50 px-5 py-6 sm:w-fit sm:max-w-none sm:px-10">
+        <div className="flex flex-col gap-4">
           <FilterRow
             label="직군"
             value={group}
             options={GROUP_FILTERS}
             onChange={setGroup}
           />
-          <div className="col-span-2 h-px bg-neutral-200" />
+          <div className="h-px bg-neutral-200" />
           <FilterRow
             label="고용형태"
             value={employment}

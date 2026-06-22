@@ -127,15 +127,15 @@ export default async function OpeningDetailPage({
               {/* 채용 절차 */}
               <section className="mt-12">
                 <h2 className="text-xl font-bold text-neutral-900">채용 절차</h2>
-                <div className="mt-4 flex flex-wrap items-center gap-2">
+                <div className="mt-4 flex flex-wrap items-center gap-y-2">
                   {hiring.processFlow.map((step, i) => (
-                    <span key={step} className="flex items-center gap-2">
+                    <span key={step} className="inline-flex items-center">
+                      {i > 0 && (
+                        <span className="px-2 text-neutral-400">→</span>
+                      )}
                       <span className="rounded-full bg-neutral-900 px-3.5 py-1.5 text-sm font-semibold text-white">
                         {step}
                       </span>
-                      {i < hiring.processFlow.length - 1 && (
-                        <span className="text-neutral-400">→</span>
-                      )}
                     </span>
                   ))}
                 </div>

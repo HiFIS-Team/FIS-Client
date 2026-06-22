@@ -153,7 +153,7 @@ export function ApplyForm({
         <label className="flex cursor-pointer items-center gap-3 border-b border-neutral-200 bg-neutral-50 px-5 py-4">
           <input
             type="checkbox"
-            className="h-4 w-4 accent-[var(--color-brand)]"
+            className="h-4 w-4 shrink-0 accent-[var(--color-brand)]"
             checked={allAgreed}
             onChange={toggleAll}
           />
@@ -164,19 +164,21 @@ export function ApplyForm({
             key={t.id}
             className="flex cursor-pointer items-center justify-between gap-3 border-b border-neutral-100 px-5 py-4 last:border-b-0"
           >
-            <span className="flex items-center gap-3">
+            <span className="flex min-w-0 items-center gap-3">
               <input
                 type="checkbox"
-                className="h-4 w-4 accent-[var(--color-brand)]"
+                className="h-4 w-4 shrink-0 accent-[var(--color-brand)]"
                 checked={!!agreed[t.id]}
                 onChange={(e) =>
                   setAgreed((p) => ({ ...p, [t.id]: e.target.checked }))
                 }
               />
-              <span className="text-neutral-800">{t.title}</span>
+              <span className="text-sm text-neutral-800 sm:text-base">
+                {t.title}
+              </span>
             </span>
             <span
-              className={`text-sm ${
+              className={`shrink-0 text-sm ${
                 t.required ? "text-brand" : "text-neutral-400"
               }`}
             >
