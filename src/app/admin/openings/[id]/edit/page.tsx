@@ -36,6 +36,7 @@ export default async function EditOpeningPage({
               group: opening.group,
               job: opening.job,
               location: opening.location,
+              address: opening.address,
               employment: opening.employment,
               career: opening.career,
               summary: opening.summary,

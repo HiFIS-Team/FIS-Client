@@ -30,8 +30,10 @@ export interface Opening {
   group: JobGroupKey;
   /** 세부 직무 (예: 브랜드 디자이너) */
   job: string;
-  /** 근무지 */
+  /** 근무지 (짧은 표기, 예: 서울 본사) */
   location: string;
+  /** 지도용 실제 주소 (선택) */
+  address?: string;
   employment: EmploymentType;
   career: CareerType;
   /** 카드에 노출되는 한 줄 요약 */

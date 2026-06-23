@@ -31,6 +31,7 @@ function parse(formData: FormData) {
     group: str(formData.get("group")),
     job: str(formData.get("job")),
     location: str(formData.get("location")),
+    address: str(formData.get("address")) || null,
     employment: str(formData.get("employment")),
     career: str(formData.get("career")),
     summary: str(formData.get("summary")),

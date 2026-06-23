@@ -54,6 +54,7 @@ export default async function OpeningDetailPage({
   const { hiring, brand } = site;
   const applyHref = opening.applyUrl ?? `/openings/${opening.id}/apply`;
   const applyExternal = Boolean(opening.applyUrl);
+  const mapAddress = opening.address || brand.address;
   const meta: [string, string][] = [
     ["직무", opening.job],
     ["고용형태", opening.employment],
@@ -194,14 +195,14 @@ export default async function OpeningDetailPage({
                   <iframe
                     title="근무지 지도"
                     src={`https://www.google.com/maps?q=${encodeURIComponent(
-                      brand.address
+                      mapAddress
                     )}&output=embed`}
                     className="h-40 w-full"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
-                <p className="mt-2 text-xs text-neutral-500">{brand.address}</p>
+                <p className="mt-2 text-xs text-neutral-500">{mapAddress}</p>
 
                 {applyExternal ? (
                   <a

@@ -17,6 +17,8 @@ model Opening {
   employment       String // 정규직 | 계약직 | 인턴 | 파트타임
   career           String // 신입 | 경력 | 경력무관
   summary          String
+  /// 지도에 표시할 실제 주소 (비우면 대표 주소 사용)
+  address          String?
   hot              Boolean  @default(false)
   applyUrl         String?
   description      String?

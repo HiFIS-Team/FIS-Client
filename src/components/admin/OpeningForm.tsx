@@ -8,6 +8,7 @@ type Defaults = {
   group?: string;
   job?: string;
   location?: string;
+  address?: string | null;
   employment?: string;
   career?: string;
   summary?: string;
@@ -98,6 +99,12 @@ export function OpeningForm({
           <div>
             <label className={label}>근무지 *</label>
             <input name="location" required defaultValue={defaults.location} className={field} placeholder="예) 서울 본사" />
+          </div>
+          <div className="sm:col-span-2">
+            <label className={label}>
+              지도 주소 <span className={hint}>(선택 · 비우면 대표 주소)</span>
+            </label>
+            <input name="address" defaultValue={defaults.address ?? ""} className={field} placeholder="예) 서울특별시 강남구 테헤란로 123" />
           </div>
           <div>
             <label className={label}>고용형태 *</label>
