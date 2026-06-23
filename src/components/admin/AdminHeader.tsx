@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { auth, signOut } from "@/auth";
 
 export async function AdminHeader() {
@@ -6,8 +7,15 @@ export async function AdminHeader() {
   return (
     <header className="border-b border-neutral-200 bg-white">
       <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-5">
-        <Link href="/admin" className="font-extrabold tracking-tight text-neutral-900">
-          채용 관리자 <span className="text-brand">★</span>
+        <Link href="/admin" className="flex items-center gap-2">
+          <Image
+            src="/images/logo.png"
+            alt="피트니스스타"
+            width={110}
+            height={24}
+            className="h-6 w-auto object-contain"
+          />
+          <span className="text-sm font-semibold text-neutral-400">관리자</span>
         </Link>
         <div className="flex items-center gap-4 text-sm">
           <Link href="/" className="text-neutral-500 hover:text-neutral-900">

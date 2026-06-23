@@ -14,7 +14,7 @@ export default function NewOpeningPage() {
           ← 목록
         </Link>
         <h1 className="mt-4 text-2xl font-extrabold text-neutral-900">새 공고 작성</h1>
-        <div className="mt-8 rounded-xl border border-neutral-200 bg-white p-6">
+        <div className="mt-8">
           <OpeningForm action={createOpening} submitLabel="공고 등록" />
         </div>
       </main>

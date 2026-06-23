@@ -1,17 +1,36 @@
+import Image from "next/image";
 import { signIn } from "@/auth";
 
 export const metadata = { title: "관리자 로그인" };
 
 export default function AdminLoginPage() {
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-neutral-950 px-5">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-8 text-center shadow-xl">
-        <p className="text-lg font-extrabold tracking-tight text-neutral-900">
-          피트니스스타 <span className="text-brand">★</span>
-        </p>
-        <h1 className="mt-1 text-sm font-medium text-neutral-500">
-          채용 관리자
-        </h1>
+    <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-neutral-950 px-5">
+      {/* 배경 장식 */}
+      <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
+
+      <div className="relative w-full max-w-sm rounded-3xl border border-white/10 bg-white p-8 shadow-2xl">
+        {/* 로고 */}
+        <div className="flex justify-center">
+          <Image
+            src="/images/logo.png"
+            alt="피트니스스타"
+            width={150}
+            height={32}
+            priority
+            className="h-9 w-auto object-contain"
+          />
+        </div>
+
+        <div className="mt-6 text-center">
+          <h1 className="text-xl font-extrabold tracking-tight text-neutral-900">
+            채용 관리자
+          </h1>
+          <p className="mt-1 text-sm text-neutral-500">
+            관리자 계정으로 로그인하세요
+          </p>
+        </div>
 
         <form
           action={async () => {
@@ -22,7 +41,7 @@ export default function AdminLoginPage() {
         >
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-full border border-neutral-300 py-3 font-semibold text-neutral-800 transition-colors hover:bg-neutral-50"
+            className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-neutral-300 bg-white py-3 font-semibold text-neutral-800 transition-all hover:border-neutral-400 hover:bg-neutral-50 active:scale-[0.99]"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden>
               <path
@@ -46,7 +65,7 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-xs text-neutral-400">
+        <p className="mt-6 text-center text-xs text-neutral-400">
           허용된 관리자 계정만 접근할 수 있습니다.
         </p>
       </div>
