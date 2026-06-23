@@ -7,6 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+/// 채용 공고
+model Opening {
+  id               String   @id @default(cuid())
+  title            String
+  group            String // office | field | coach
+  job              String
+  location         String
+  employment       String // 정규직 | 계약직 | 인턴 | 파트타임
+  career           String // 신입 | 경력 | 경력무관
+  summary          String
+  hot              Boolean  @default(false)
+  applyUrl         String?
+  description      String?
+  appeal           String[]
+  responsibilities String[]
+  qualifications   String[]
+  preferred        String[]
+  /// 공개 여부 (초안/게시)
+  published        Boolean  @default(true)
+  /// 정렬 순서 (작을수록 위)
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
 /// 지원서 접수 기록
 model Application {
   id           String   @id @default(cuid())

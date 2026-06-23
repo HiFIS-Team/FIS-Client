@@ -9,6 +9,9 @@ import { JobGroups } from "@/components/sections/JobGroups";
 import { Openings } from "@/components/sections/Openings";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 
+// 공고를 DB에서 읽으므로 매 요청마다 최신으로 렌더링
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <>

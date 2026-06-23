@@ -5,12 +5,11 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
 import { ApplyForm } from "@/components/ApplyForm";
-import { openings, getOpening } from "@/data/openings";
+import { getOpening } from "@/lib/openings";
 import { site } from "@/data/site";
 
-export function generateStaticParams() {
-  return openings.map((o) => ({ id: o.id }));
-}
+// 공고를 DB에서 읽으므로 요청 시 렌더링
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -18,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const opening = getOpening(id);
+  const opening = await getOpening(id);
   return {
     title: opening
       ? `지원하기 · ${opening.title} | ${site.brand.name}`
@@ -32,7 +31,7 @@ export default async function ApplyPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const opening = getOpening(id);
+  const opening = await getOpening(id);
   if (!opening) notFound();
 
   return (

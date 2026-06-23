@@ -4,13 +4,11 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
-import { openings, getOpening } from "@/data/openings";
+import { getOpening } from "@/lib/openings";
 import { site } from "@/data/site";
 
-// 모든 공고 상세 페이지를 미리 생성
-export function generateStaticParams() {
-  return openings.map((o) => ({ id: o.id }));
-}
+// 공고를 DB에서 읽으므로 요청 시 렌더링
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -18,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const opening = getOpening(id);
+  const opening = await getOpening(id);
   if (!opening) return { title: "공고를 찾을 수 없습니다" };
   return {
     title: `${opening.title} | ${site.brand.name} 채용`,
@@ -50,7 +48,7 @@ export default async function OpeningDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const opening = getOpening(id);
+  const opening = await getOpening(id);
   if (!opening) notFound();
 
   const { hiring, brand } = site;
