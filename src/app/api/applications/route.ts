@@ -1,14 +1,19 @@
 import { NextResponse } from "next/server";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { randomUUID } from "node:crypto";
+import { prisma } from "@/lib/prisma";
 
 /** 파일 처리를 위해 Node 런타임에서 실행 */
 export const runtime = "nodejs";
 
+const UPLOAD_DIR = process.env.UPLOAD_DIR || "./uploads";
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
 /**
  * 지원서 접수 API.
  * 프론트의 ApplyForm에서 multipart/form-data 로 POST 합니다.
- *
- * 현재는 받은 내용을 검증 후 로그로만 남깁니다.
- * 실제 운영 시 아래 TODO 3가지를 채우면 됩니다.
+ * 파일을 디스크에 저장하고, 지원 기록을 DB(Application)에 남깁니다.
  */
 export async function POST(request: Request) {
   try {
@@ -19,7 +24,9 @@ export async function POST(request: Request) {
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const phone = String(form.get("phone") ?? "").trim();
-    const agreedTerms = String(form.get("agreedTerms") ?? "");
+    const agreedTerms = String(form.get("agreedTerms") ?? "")
+      .split(",")
+      .filter(Boolean);
 
     // 서버측 기본 검증
     if (!name || !email || !phone) {
@@ -35,39 +42,55 @@ export async function POST(request: Request) {
       );
     }
 
-    // 첨부 파일 (documents) + 문서명(documentNames) 매칭
-    const fileEntries = form.getAll("documents").filter(
-      (f): f is File => f instanceof File
-    );
+    // 첨부 파일 + 문서명 매칭
+    const fileEntries = form
+      .getAll("documents")
+      .filter((f): f is File => f instanceof File);
     const docNames = form.getAll("documentNames").map((v) => String(v));
-    const files = fileEntries.map((file, i) => ({
-      label: docNames[i] ?? "첨부파일",
-      name: file.name,
-      size: file.size,
-      type: file.type,
-      file, // 실제 저장 시 사용
-    }));
 
-    const application = {
-      openingId,
-      openingTitle,
-      name,
-      email,
-      phone,
-      agreedTerms: agreedTerms.split(",").filter(Boolean),
-      files: files.map((f) => ({ label: f.label, name: f.name, size: f.size })),
-      submittedAt: new Date().toISOString(),
-    };
+    // 업로드 디렉터리 (공고별 하위 폴더)
+    const destDir = path.join(UPLOAD_DIR, openingId || "unknown");
+    await mkdir(destDir, { recursive: true });
 
-    // 접수 로그 (개발 확인용)
-    console.log("[지원 접수]", application);
+    const files: { label: string; name: string; path: string; size: number }[] =
+      [];
+    for (let i = 0; i < fileEntries.length; i++) {
+      const file = fileEntries[i];
+      if (file.size === 0) continue;
+      if (file.size > MAX_FILE_SIZE) {
+        return NextResponse.json(
+          { ok: false, error: `${file.name} 파일이 너무 큽니다(최대 10MB).` },
+          { status: 400 }
+        );
+      }
+      const safeName = `${randomUUID()}-${file.name.replace(/[^\w.\-가-힣]/g, "_")}`;
+      const filePath = path.join(destDir, safeName);
+      const bytes = Buffer.from(await file.arrayBuffer());
+      await writeFile(filePath, bytes);
+      files.push({
+        label: docNames[i] ?? "첨부파일",
+        name: file.name,
+        path: filePath,
+        size: file.size,
+      });
+    }
 
-    // TODO 1) 파일 스토리지 업로드 (S3 / Supabase Storage / Vercel Blob)
-    //   - files[].file 을 업로드하고 URL 확보
-    // TODO 2) DB에 지원 기록 저장 (application + 파일 URL)
-    // TODO 3) 카카오톡 알림 발송 (담당자에게 새 지원 알림)
+    // DB 저장
+    const application = await prisma.application.create({
+      data: {
+        openingId,
+        openingTitle,
+        name,
+        email,
+        phone,
+        agreedTerms,
+        files,
+      },
+    });
 
-    return NextResponse.json({ ok: true });
+    // TODO: 카카오톡 알림 발송 (담당자에게 새 지원 알림)
+
+    return NextResponse.json({ ok: true, id: application.id });
   } catch (err) {
     console.error("[지원 접수 오류]", err);
     return NextResponse.json(

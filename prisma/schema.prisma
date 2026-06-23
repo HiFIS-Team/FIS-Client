@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// 지원서 접수 기록
+model Application {
+  id           String   @id @default(cuid())
+  openingId    String
+  openingTitle String
+  name         String
+  email        String
+  phone        String
+  agreedTerms  String[]
+  /// 첨부 파일 메타 [{ label, name, path, size }]
+  files        Json
+  createdAt    DateTime @default(now())
+
+  @@index([openingId])
+  @@index([createdAt])
+}
