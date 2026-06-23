@@ -4,10 +4,14 @@ import { useMemo, useState } from "react";
 import type { ApplyDocument, ApplyTerm } from "@/lib/types";
 
 export function ApplyForm({
+  openingId,
+  openingTitle,
   documents,
   terms,
   brandEmail,
 }: {
+  openingId: string;
+  openingTitle: string;
   documents: readonly ApplyDocument[];
   terms: readonly ApplyTerm[];
   brandEmail: string;
@@ -15,9 +19,10 @@ export function ApplyForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [files, setFiles] = useState<Record<string, string>>({});
+  const [files, setFiles] = useState<Record<string, File>>({});
   const [agreed, setAgreed] = useState<Record<string, boolean>>({});
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const allAgreed = useMemo(
@@ -30,8 +35,13 @@ export function ApplyForm({
     setAgreed(Object.fromEntries(terms.map((t) => [t.id, next])));
   };
 
-  const onFile = (docName: string, fileName: string | undefined) =>
-    setFiles((prev) => ({ ...prev, [docName]: fileName ?? "" }));
+  const onFile = (docName: string, file: File | undefined) =>
+    setFiles((prev) => {
+      const next = { ...prev };
+      if (file) next[docName] = file;
+      else delete next[docName];
+      return next;
+    });
 
   const validate = () => {
     if (!name.trim()) return "이름을 입력해 주세요.";
@@ -46,7 +56,7 @@ export function ApplyForm({
     return "";
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const msg = validate();
     if (msg) {
@@ -54,8 +64,35 @@ export function ApplyForm({
       return;
     }
     setError("");
-    // TODO: 실제 접수 백엔드/폼 서비스 연동 지점
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const fd = new FormData();
+      fd.append("openingId", openingId);
+      fd.append("openingTitle", openingTitle);
+      fd.append("name", name.trim());
+      fd.append("email", email.trim());
+      fd.append("phone", phone.trim());
+      fd.append(
+        "agreedTerms",
+        terms.filter((t) => agreed[t.id]).map((t) => t.id).join(",")
+      );
+      // 첨부 파일 (문서명과 함께 전송)
+      for (const [docName, file] of Object.entries(files)) {
+        fd.append("documents", file, file.name);
+        fd.append("documentNames", docName);
+      }
+
+      const res = await fetch("/api/applications", {
+        method: "POST",
+        body: fd,
+      });
+      if (!res.ok) throw new Error("submit failed");
+      setSubmitted(true);
+    } catch {
+      setError("제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -129,13 +166,13 @@ export function ApplyForm({
             <label className="mt-3 flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-neutral-300 bg-neutral-50 px-5 py-5 text-neutral-500 transition-colors hover:border-brand">
               <span className="text-xl">📎</span>
               <span className="truncate">
-                {files[doc.name] || "이곳에 파일을 올려주세요"}
+                {files[doc.name]?.name || "이곳에 파일을 올려주세요"}
               </span>
               <input
                 type="file"
                 accept="application/pdf"
                 className="hidden"
-                onChange={(e) => onFile(doc.name, e.target.files?.[0]?.name)}
+                onChange={(e) => onFile(doc.name, e.target.files?.[0])}
               />
             </label>
             {doc.note && (
@@ -196,9 +233,10 @@ export function ApplyForm({
 
       <button
         type="submit"
-        className="mt-8 w-full rounded-full bg-brand py-4 text-lg font-bold text-neutral-950 transition-transform hover:scale-[1.01]"
+        disabled={submitting}
+        className="mt-8 w-full rounded-full bg-brand py-4 text-lg font-bold text-neutral-950 transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        제출하기
+        {submitting ? "제출 중..." : "제출하기"}
       </button>
       <p className="mt-4 text-center text-sm text-neutral-400">
         문의: {brandEmail}

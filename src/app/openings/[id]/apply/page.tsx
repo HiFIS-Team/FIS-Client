@@ -57,6 +57,8 @@ export default async function ApplyPage({
 
           <div className="mt-10">
             <ApplyForm
+              openingId={opening.id}
+              openingTitle={opening.title}
               documents={site.apply.documents}
               terms={site.apply.terms}
               brandEmail={site.brand.email}
