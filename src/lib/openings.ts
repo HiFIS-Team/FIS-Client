@@ -54,3 +54,15 @@ export async function getOpening(id: string): Promise<Opening | null> {
   if (!row || !row.published) return null;
   return toOpening(row);
 }
+
+/** 관리자용: 비공개 포함 전체 공고 (원본 행) */
+export async function getAllOpenings() {
+  return prisma.opening.findMany({
+    orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
+  });
+}
+
+/** 관리자용: 비공개 포함 단건 (편집용 원본 행) */
+export async function getAdminOpening(id: string) {
+  return prisma.opening.findUnique({ where: { id } });
+}
