@@ -5,10 +5,10 @@ import Image from "next/image";
 
 /** 사진이 없을 때 슬라이드별로 보여줄 그라데이션 (전환이 보이도록 색을 다르게) */
 const PLACEHOLDER_GRADIENTS = [
-  "from-neutral-700 via-neutral-800 to-neutral-950",
-  "from-orange-900 via-neutral-800 to-neutral-950",
-  "from-red-900 via-neutral-800 to-neutral-950",
-  "from-zinc-700 via-neutral-800 to-neutral-950",
+  "from-orange-900 via-neutral-900 to-neutral-950",
+  "from-orange-800 via-neutral-900 to-neutral-950",
+  "from-red-900 via-neutral-900 to-neutral-950",
+  "from-amber-900 via-neutral-900 to-neutral-950",
 ];
 
 export function HeroSlideshow({
@@ -18,8 +18,9 @@ export function HeroSlideshow({
   images: string[];
   interval?: number;
 }) {
-  // 비어있으면 placeholder 슬라이드 3장으로 대체
-  const slides = images.length > 0 ? images : ["", "", ""];
+  // 실제 사진만 사용. 없으면 고정 그라데이션 한 장(전환 없음).
+  const realImages = images.filter(Boolean);
+  const slides = realImages.length > 0 ? realImages : [""];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
