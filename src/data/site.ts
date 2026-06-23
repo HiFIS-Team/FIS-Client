@@ -11,7 +11,7 @@ export const site = {
     name: "피트니스스타",
     nameEn: "FITNESS STAR",
     /** 채용 문의 메일 */
-    email: "recruit@fitnessstar.co.kr",
+    email: "wnstmd1245@naver.com",
     /** 회사 주소 (상세 페이지 지도에 사용) — 실제 주소로 변경하세요 */
     address: "서울특별시 강남구 테헤란로 123",
     /**
@@ -57,9 +57,9 @@ export const site = {
     eyebrow: "BY THE NUMBERS",
     title: "숫자로 보는 피트니스스타",
     items: [
-      { value: "100+", label: "전국 지점" },
-      { value: "30만+", label: "누적 회원" },
-      { value: "8년", label: "지속 성장" },
+      { value: "3+", label: "광주 · 전남 지점" },
+      { value: "10만명+", label: "누적 회원" },
+      { value: "10년", label: "지속 성장" },
       { value: "98%", label: "회원 재등록률" },
     ],
   },
@@ -72,14 +72,14 @@ export const site = {
         name: "STAR GYM",
         tagline: "누구나 한 번 더 운동하게 만드는 공간",
         description:
-          "들고, 뛰고, 회복하는 운동의 본질에 집중한 프리미엄 피트니스 공간입니다.",
+          "20억 이상의 투자 1000평 이상의 규모 각 지역을 대표하는 초대형 헬스장.\n스마트 앱 성장 관리 시스템.",
         image: "/images/private/brand-gym.jpg",
       },
       {
-        name: "TEAM STAR",
+        name: "TRAINING BRAND",
         tagline: "커뮤니티 기반 그룹 트레이닝",
         description:
-          "함께 땀 흘리는 즐거움과 매일의 성취감을 결합한 팀 트레이닝 브랜드입니다.",
+          "함께 땀 흘리는 즐거움과 매일의 성취감을 결합한 피트니스 브랜드입니다.",
         image: "/images/private/brand-team.jpg",
       },
     ],
@@ -156,41 +156,38 @@ export const site = {
     ],
     benefits: [
       {
-        group: "건강하게",
-        items: ["건강검진 비용 지원", "장기근속자 포상", "패밀리 할인"],
+        group: "안정적인 근무",
+        items: ["4대보험", "월차 · 연차", "정기 휴가"],
       },
       {
-        group: "똑똑하게",
-        items: ["교육 및 도서 구입비 지원", "체계적인 온보딩 교육", "최고의 동료"],
+        group: "확실한 보상",
+        items: ["인센티브제", "우수사원 표창 · 포상"],
       },
       {
-        group: "함께",
-        items: ["전 지점 무료 이용", "그룹 트레이닝 무료 수강", "운동 상품 할인"],
+        group: "함께하는 복지",
+        items: ["명절 귀향비 지급", "각종 경조금"],
       },
     ],
-    processFlow: ["서류 접수", "1차 인터뷰", "2차 인터뷰", "최종 합격"],
+    processFlow: ["서류 접수", "서류 전형", "면접 전형", "최종 합격 및 입사"],
     process: [
       {
         step: "서류 접수",
-        detail: ["지원서를 검토 후 1차 인터뷰 대상자에게 개별 연락드립니다."],
+        detail: ["지원서를 접수받습니다."],
       },
       {
-        step: "1차 인터뷰",
+        step: "서류 전형",
+        detail: ["지원서를 검토 후 면접 대상자에게 개별 연락드립니다."],
+      },
+      {
+        step: "면접 전형",
         detail: [
-          "직무 역량을 확인하는 인터뷰입니다.",
-          "팀 리드 및 실무자와 진행됩니다.",
+          "직무 역량과 컬처핏을 확인하는 면접입니다.",
+          "실무자 및 리더와 진행됩니다.",
         ],
       },
       {
-        step: "2차 인터뷰",
-        detail: [
-          "컬처핏을 확인하는 시간입니다.",
-          "리더 및 임원과 진행됩니다.",
-        ],
-      },
-      {
-        step: "최종 합격",
-        detail: ["처우 협의 후 최종 합격하게 됩니다."],
+        step: "최종 합격 및 입사",
+        detail: ["처우 협의 후 최종 합격하여 입사하게 됩니다."],
       },
     ],
     processNote: "* 포지션에 따라 과제 전형이 추가될 수 있습니다.",

@@ -10,6 +10,8 @@ type Row = {
   address: string | null;
   employment: string;
   career: string;
+  salary: string | null;
+  workHours: string[];
   summary: string;
   hot: boolean;
   applyUrl: string | null;
@@ -30,6 +32,8 @@ function toOpening(o: Row): Opening {
     address: o.address ?? undefined,
     employment: o.employment as EmploymentType,
     career: o.career as CareerType,
+    salary: o.salary ?? undefined,
+    workHours: o.workHours,
     summary: o.summary,
     hot: o.hot,
     applyUrl: o.applyUrl ?? undefined,

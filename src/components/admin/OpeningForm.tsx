@@ -11,6 +11,8 @@ type Defaults = {
   address?: string | null;
   employment?: string;
   career?: string;
+  salary?: string | null;
+  workHours?: string[];
   summary?: string;
   hot?: boolean;
   published?: boolean;
@@ -121,6 +123,24 @@ export function OpeningForm({
                 <option key={c} value={c}>{c}</option>
               ))}
             </select>
+          </div>
+          <div>
+            <label className={label}>
+              급여 <span className={hint}>(선택)</span>
+            </label>
+            <input name="salary" defaultValue={defaults.salary ?? ""} className={field} placeholder="예) 면접 후 협의 / 3,000만원~" />
+          </div>
+          <div className="sm:col-span-2">
+            <label className={label}>
+              근무 시간 <span className={hint}>(선택 · 줄바꿈으로 여러 개)</span>
+            </label>
+            <textarea
+              name="workHours"
+              rows={3}
+              defaultValue={(defaults.workHours ?? []).join("\n")}
+              className={field}
+              placeholder={"예) 주 5일 09:00~18:00\n토요일 09:00~13:00"}
+            />
           </div>
           <div>
             <label className={label}>정렬 순서 <span className={hint}>(작을수록 위)</span></label>

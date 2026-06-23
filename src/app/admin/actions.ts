@@ -35,6 +35,8 @@ function parse(formData: FormData) {
     address: str(formData.get("address")) || null,
     employment: str(formData.get("employment")),
     career: str(formData.get("career")),
+    salary: str(formData.get("salary")) || null,
+    workHours: lines(formData.get("workHours")),
     summary: str(formData.get("summary")),
     hot: formData.get("hot") === "on",
     published: formData.get("published") === "on",

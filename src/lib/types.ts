@@ -36,6 +36,10 @@ export interface Opening {
   address?: string;
   employment: EmploymentType;
   career: CareerType;
+  /** 급여 (자유 텍스트, 선택) */
+  salary?: string;
+  /** 근무 시간 (여러 줄, 선택) */
+  workHours?: string[];
   /** 카드에 노출되는 한 줄 요약 */
   summary: string;
   /** 상단 강조(🔥) 여부 */

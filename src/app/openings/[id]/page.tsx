@@ -59,6 +59,10 @@ export default async function OpeningDetailPage({
     ["직무", opening.job],
     ["고용형태", opening.employment],
     ["경력", opening.career],
+    ...(opening.salary ? ([["급여", opening.salary]] as [string, string][]) : []),
+    ...(opening.workHours && opening.workHours.length > 0
+      ? ([["근무 시간", opening.workHours.join("\n")]] as [string, string][])
+      : []),
     ["근무지", opening.location],
   ];
 
@@ -183,9 +187,11 @@ export default async function OpeningDetailPage({
               <div className="rounded-2xl border border-neutral-200 p-6">
                 <dl className="space-y-3">
                   {meta.map(([k, v]) => (
-                    <div key={k} className="flex justify-between gap-4 text-sm">
-                      <dt className="text-neutral-500">{k}</dt>
-                      <dd className="font-semibold text-neutral-900">{v}</dd>
+                    <div key={k} className="flex items-start justify-between gap-4 text-sm">
+                      <dt className="shrink-0 text-neutral-500">{k}</dt>
+                      <dd className="whitespace-pre-line text-right font-semibold text-neutral-900">
+                        {v}
+                      </dd>
                     </div>
                   ))}
                 </dl>
