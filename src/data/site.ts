@@ -138,6 +138,27 @@ export const site = {
     ],
   },
 
+  /**
+   * 복리후생 (메인 섹션, 이모지 그리드).
+   * 공고 상세의 hiring.benefits 와는 별개로, 메인에서 가볍게 보여주는 용도.
+   */
+  perks: {
+    eyebrow: "BENEFITS",
+    title: "성장과 삶의 질, 둘 다 챙깁니다",
+    body: "코치와 크루가 오래 일할 수 있도록 다양한 혜택을 제공합니다.",
+    // icon 값은 Perks.tsx 의 아이콘 맵 키 (lucide-react)
+    items: [
+      { icon: "wallet", label: "인센티브제" },
+      { icon: "shield", label: "4대보험" },
+      { icon: "calendar", label: "월차 · 연차 · 정기휴가" },
+      { icon: "graduation", label: "전문 교육 지원" },
+      { icon: "dumbbell", label: "헬스장 무료 이용" },
+      { icon: "trophy", label: "우수사원 표창 · 포상" },
+      { icon: "gift", label: "명절 귀향비 · 경조금" },
+      { icon: "trending", label: "커리어 개발 지원" },
+    ],
+  },
+
   contact: {
     eyebrow: "GET IN TOUCH",
     title: "어떤 포지션이 맞을지\n고민되시나요?",

@@ -6,6 +6,7 @@ import { Stats } from "@/components/sections/Stats";
 import { Brands } from "@/components/sections/Brands";
 import { Culture } from "@/components/sections/Culture";
 import { JobGroups } from "@/components/sections/JobGroups";
+import { Perks } from "@/components/sections/Perks";
 import { Openings } from "@/components/sections/Openings";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Brands />
         <Culture />
         <JobGroups />
+        <Perks />
         <Openings />
         <ContactCTA />
       </main>
