@@ -107,6 +107,43 @@ export const site = {
     image: "/images/private/culture.png",
   },
 
+  /**
+   * 함께하는 문화 (메인 포토 갤러리 섹션).
+   * 단체사진은 private 폴더(깃 제외) — public/images/private/ 에 넣으세요.
+   * tag/title 은 사진 설명으로 자유롭게 교체하면 됩니다.
+   */
+  community: {
+    eyebrow: "LIFE AT FITNESS STAR",
+    title: "함께 만드는 문화",
+    body: "함께 배우고, 함께 성장하고, 함께 즐기는 사람들. 피트니스스타의 일상을 소개합니다.",
+    items: [
+      {
+        tag: "TEAM",
+        title: "단체 OT · 현장 교육",
+        description:
+          "신규 입사자도 빠르게 적응할 수 있도록, 현장에서 함께 배우고 익히는 교육을 진행합니다.",
+        image: "/images/private/community-1.jpg",
+        imagePosition: "50% 78%" as const,
+      },
+      {
+        tag: "COMMUNITY",
+        title: "전 지점 워크샵",
+        description:
+          "지점 구분 없이 모든 코치와 크루가 모여 노하우를 나누고 한 팀으로 호흡을 맞춥니다.",
+        image: "/images/private/community-2.jpg",
+        imagePosition: "center" as const,
+      },
+      {
+        tag: "GROWTH",
+        title: "비전트립 · 세미나",
+        description:
+          "해외 비전트립과 전문가 초청 세미나로 더 넓은 시야와 성장의 기회를 제공합니다.",
+        image: "/images/private/community-3.jpg",
+        imagePosition: "50% 72%" as const,
+      },
+    ],
+  },
+
   jobGroups: {
     eyebrow: "JOB GROUPS",
     title: "당신의 자리를 찾아보세요",

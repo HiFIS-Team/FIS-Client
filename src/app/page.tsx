@@ -5,6 +5,7 @@ import { Mission } from "@/components/sections/Mission";
 import { Stats } from "@/components/sections/Stats";
 import { Brands } from "@/components/sections/Brands";
 import { Culture } from "@/components/sections/Culture";
+import { Community } from "@/components/sections/Community";
 import { JobGroups } from "@/components/sections/JobGroups";
 import { Perks } from "@/components/sections/Perks";
 import { Openings } from "@/components/sections/Openings";
@@ -23,6 +24,7 @@ export default function Home() {
         <Stats />
         <Brands />
         <Culture />
+        <Community />
         <JobGroups />
         <Perks />
         <Openings />
