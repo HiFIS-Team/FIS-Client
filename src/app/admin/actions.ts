@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { notifyApplicationResult } from "@/lib/notify";
+import { notifyApplicationStatus } from "@/lib/notify";
 
 /** 서버 액션에서도 관리자 권한 재확인 (방어적) */
 async function requireAdmin() {
@@ -85,10 +85,8 @@ export async function togglePublish(id: string, published: boolean) {
 export async function setApplicationStatus(id: string, status: string) {
   await requireAdmin();
   const app = await prisma.application.update({ where: { id }, data: { status } });
-  // 합격/불합격으로 변경 시 지원자에게 결과 알림톡 (미설정 시 자동 스킵)
-  if (status === "합격" || status === "불합격") {
-    await notifyApplicationResult(app, status === "합격");
-  }
+  // 서류합격/최종합격/불합격으로 변경 시 지원자에게 결과 알림톡 (미설정 시 자동 스킵)
+  await notifyApplicationStatus(app, status);
   revalidatePath("/admin/applications");
   revalidatePath(`/admin/applications/${id}`);
 }

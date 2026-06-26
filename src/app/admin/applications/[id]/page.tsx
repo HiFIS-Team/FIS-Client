@@ -8,7 +8,7 @@ import { setApplicationStatus, deleteApplication } from "../../actions";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "지원 상세" };
 
-const STATUSES = ["접수", "합격", "불합격"];
+const STATUSES = ["서류합격", "최종합격", "불합격"];
 
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (

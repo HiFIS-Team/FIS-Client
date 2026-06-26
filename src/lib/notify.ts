@@ -30,7 +30,14 @@ type ApplicationLike = {
   createdAt: Date;
 };
 
-type TemplateKind = "NEW" | "RECEIVED" | "PASS" | "FAIL";
+type TemplateKind = "NEW" | "RECEIVED" | "DOCPASS" | "FINALPASS" | "FAIL";
+
+/** 지원 상태 → 알림톡 템플릿 종류 매핑 (해당 없으면 발송 안 함) */
+const STATUS_TEMPLATE: Record<string, TemplateKind> = {
+  서류합격: "DOCPASS",
+  최종합격: "FINALPASS",
+  불합격: "FAIL",
+};
 
 const onlyDigits = (p: string) => p.replace(/\D/g, "");
 
@@ -127,12 +134,14 @@ export async function notifyApplicationReceived(app: ApplicationLike) {
   });
 }
 
-/** 지원자에게 합격/불합격 결과 알림 */
-export async function notifyApplicationResult(
+/** 지원자에게 전형 결과 알림 (서류합격/최종합격/불합격) */
+export async function notifyApplicationStatus(
   app: ApplicationLike,
-  passed: boolean
+  status: string
 ) {
-  await sendAlimtalk(app.phone, app.branch, passed ? "PASS" : "FAIL", {
+  const kind = STATUS_TEMPLATE[status];
+  if (!kind) return; // 접수 등은 발송 안 함
+  await sendAlimtalk(app.phone, app.branch, kind, {
     "#{이름}": app.name,
     "#{포지션}": app.openingTitle,
   });
