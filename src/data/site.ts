@@ -78,7 +78,7 @@ export const site = {
       },
       {
         name: "TRAINING BRAND",
-        tagline: "커뮤니티 기반 그룹 트레이닝",
+        tagline: "스마트 앱 기반 트레이닝",
         description:
           "함께 땀 흘리는 즐거움과 매일의 성취감을 결합한 피트니스 브랜드입니다.",
         image: "/images/private/brand-team.jpg",

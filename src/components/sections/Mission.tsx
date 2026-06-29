@@ -12,7 +12,7 @@ export function Mission() {
           <h2 className="whitespace-pre-line text-3xl font-extrabold leading-tight sm:text-4xl">
             {mission.title}
           </h2>
-          <p className="mt-6 whitespace-pre-line text-pretty text-base leading-relaxed text-neutral-300 sm:text-lg">
+          <p className="mt-6 whitespace-pre-line text-balance text-base leading-relaxed text-neutral-300 sm:text-lg">
             {mission.body}
           </p>
         </div>
