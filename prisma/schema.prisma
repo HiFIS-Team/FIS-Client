@@ -45,13 +45,15 @@ model Application {
   id           String   @id @default(cuid())
   openingId    String
   openingTitle String
+  /// 지점명(화순점/첨단점/동광주점) — 지점별 알림톡 발송에 사용. 미매칭이면 null
+  branch       String?
   name         String
   email        String
   phone        String
   agreedTerms  String[]
   /// 첨부 파일 메타 [{ label, name, path, size }]
   files        Json
-  /// 전형 상태: 접수 | 합격 | 불합격
+  /// 전형 상태: 접수 | 서류합격 | 최종합격 | 불합격
   status       String   @default("접수")
   createdAt    DateTime @default(now())
 

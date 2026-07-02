@@ -65,6 +65,33 @@ export const site = {
     ],
   },
 
+  /** 연혁 (지점별 오픈·회원·규모) */
+  history: {
+    eyebrow: "OUR HISTORY",
+    title: "지역에서 1등만 고집합니다",
+    body: "최고의 시설과 시스템으로, 함께하는 코치를 운영자까지 성장시켜드립니다.",
+    items: [
+      {
+        branch: "화순점",
+        year: "2021.07",
+        members: "4만+",
+        size: "300평",
+      },
+      {
+        branch: "동광주점",
+        year: "2023.07",
+        members: "3만+",
+        size: "700평",
+      },
+      {
+        branch: "첨단점",
+        year: "2024.07",
+        members: "3만+",
+        size: "1000평",
+      },
+    ],
+  },
+
   brands: {
     eyebrow: "OUR BRANDS",
     title: "피트니스를 혁신하는\n대표 브랜드",
@@ -78,7 +105,7 @@ export const site = {
       },
       {
         name: "TRAINING BRAND",
-        tagline: "커뮤니티 기반 그룹 트레이닝",
+        tagline: "스마트 앱 기반 트레이닝",
         description:
           "함께 땀 흘리는 즐거움과 매일의 성취감을 결합한 피트니스 브랜드입니다.",
         image: "/images/private/brand-team.jpg",
@@ -107,6 +134,67 @@ export const site = {
     image: "/images/private/culture.png",
   },
 
+  /** 인재상 · 채용 우대 기준 */
+  criteria: {
+    eyebrow: "WHO WE WANT",
+    title: "이런 분과 함께하고 싶어요",
+    body: "피트니스스타의 시스템과 문화에 공감하며 함께 성장할 동료를 찾습니다.",
+    items: [
+      {
+        no: "01",
+        title: "시스템 준수 · 협업 중시",
+        desc: "회사의 시스템과 프로세스를 철저히 준수하고, 팀 협업과 소통을 중요시하는 분.",
+      },
+      {
+        no: "02",
+        title: "개인 독단 성향 지양",
+        desc: "개인의 색깔이나 독단적 성향이 강하기보다, 팀 문화에 맞춰 함께 성장할 수 있는 분.",
+      },
+      {
+        no: "03",
+        title: "AI 활용에 적극적인 분 우대",
+        desc: "AI 기반 스마트 회원 관리에 동참하고, 새로운 기술·시스템과 마케팅·운영·관리·영업 전반을 배우려는 분.",
+      },
+    ],
+  },
+
+  /**
+   * 함께하는 문화 (메인 포토 갤러리 섹션).
+   * 단체사진은 private 폴더(깃 제외) — public/images/private/ 에 넣으세요.
+   * tag/title 은 사진 설명으로 자유롭게 교체하면 됩니다.
+   */
+  community: {
+    eyebrow: "LIFE AT FITNESS STAR",
+    title: "함께 만드는 문화",
+    body: "함께 배우고, 함께 성장하고, 함께 즐기는 사람들. 피트니스스타의 일상을 소개합니다.",
+    items: [
+      {
+        tag: "TEAM",
+        title: "단체 OT · 현장 교육",
+        description:
+          "신규 입사자도 빠르게 적응할 수 있도록, 현장에서 함께 배우고 익히는 교육을 진행합니다.",
+        image: "/images/private/community-1.jpg",
+        imagePosition: "50% 78%" as const,
+      },
+      {
+        tag: "COMMUNITY",
+        title: "전 지점 워크샵",
+        description:
+          "지점 구분 없이 모든 코치와 크루가 모여 노하우를 나누고 한 팀으로 호흡을 맞춥니다.",
+        image: "/images/private/community-2.jpg",
+        imagePosition: "center" as const,
+      },
+      {
+        tag: "GROWTH",
+        title: "비전트립 · 세미나",
+        description:
+          "해외 비전트립과 전문가 초청 세미나로 더 넓은 시야와 성장의 기회를 제공합니다.",
+        image: "/images/private/community-3.jpg",
+        imagePosition: "50% 72%" as const,
+      },
+    ],
+  },
+
   jobGroups: {
     eyebrow: "JOB GROUPS",
     title: "당신의 자리를 찾아보세요",
@@ -116,7 +204,7 @@ export const site = {
         name: "오피스 직군",
         description:
           "기획·마케팅·디자인·경영지원 등 본사에서 브랜드와 사업의 성장을 이끕니다.",
-        image: "/images/private/group-office.jpg",
+        image: "/images/private/group-office.png",
         imagePosition: "center" as const,
       },
       {
@@ -124,8 +212,8 @@ export const site = {
         name: "현장 관리자",
         description:
           "지점 운영과 공간개발을 통해 현장의 고객 경험과 성과를 만듭니다.",
-        image: "/images/private/group-field.png",
-        imagePosition: "center" as const,
+        image: "/images/private/group-fields.jpg",
+        imagePosition: "50% 33%" as const,
       },
       {
         key: "coach" as JobGroupKey,
@@ -135,6 +223,65 @@ export const site = {
         image: "/images/private/group-coach.jpg",
         imagePosition: "50% 35%" as const,
       },
+    ],
+  },
+
+  /** 커리어 성장 · 승진 경로 */
+  career: {
+    eyebrow: "CAREER PATH",
+    title: "빠른 성장, 확실한 승진",
+    body: "성과에 따라 헤드 트레이너부터 지점장까지. 경영 참여 기회로 이어지는 커리어를 제공합니다.",
+    /** 관리자 트랙 경로 (좌→우) */
+    track: ["헤드", "팀장", "점장"],
+    /** 실제 성장 사례 */
+    cases: [
+      {
+        name: "민중기 지점장",
+        branch: "화순점",
+        detail: "입사 2년차 팀장 → 3년차 지점장",
+      },
+      {
+        name: "김재훈 팀장",
+        branch: "동광주점",
+        detail: "입사 2년차 팀장",
+      },
+    ],
+    /** 성장 포인트 */
+    points: [
+      "헤드 트레이너 달성 후 관리자 트랙 진입 기회",
+      "대표 협의를 통한 승진 · 경영 참여 기회 확대",
+      "추후 신규 출점 시 운영 기회 제공",
+      "스마트 앱 시스템의 성과 데이터 기반 승진 결정",
+    ],
+  },
+
+  /**
+   * 복리후생 (메인 섹션, 이모지 그리드).
+   * 공고 상세의 hiring.benefits 와는 별개로, 메인에서 가볍게 보여주는 용도.
+   */
+  perks: {
+    eyebrow: "BENEFITS",
+    title: "성장과 삶의 질, 둘 다 챙깁니다",
+    body: "코치와 크루가 오래 일할 수 있도록 다양한 혜택을 제공합니다.",
+    /** 성과 상여 · 인센티브 (구체 금액) */
+    incentives: [
+      { label: "우수사원", amount: "최대 100만원", period: "매월", highlight: true },
+      { label: "친절왕", amount: "10만원", period: "매월", highlight: false },
+      { label: "피드백왕", amount: "10만원", period: "매월", highlight: false },
+      { label: "매출왕", amount: "50만원", period: "분기별", highlight: false },
+      { label: "생일 축하금", amount: "10만원", period: "생일", highlight: false },
+      { label: "명절 상여금", amount: "지급", period: "명절", highlight: false },
+    ],
+    // icon 값은 Perks.tsx 의 아이콘 맵 키 (lucide-react)
+    items: [
+      { icon: "wallet", label: "인센티브제" },
+      { icon: "shield", label: "4대보험" },
+      { icon: "calendar", label: "월차 · 연차 · 정기휴가" },
+      { icon: "graduation", label: "전문 교육 지원" },
+      { icon: "dumbbell", label: "헬스장 무료 이용" },
+      { icon: "trophy", label: "우수사원 표창 · 포상" },
+      { icon: "gift", label: "명절 귀향비 · 경조금" },
+      { icon: "trending", label: "커리어 개발 지원" },
     ],
   },
 

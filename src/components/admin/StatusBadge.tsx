@@ -1,6 +1,7 @@
 const STYLES: Record<string, string> = {
   접수: "bg-neutral-100 text-neutral-600",
-  합격: "bg-green-100 text-green-700",
+  서류합격: "bg-blue-100 text-blue-700",
+  최종합격: "bg-green-100 text-green-700",
   불합격: "bg-red-100 text-red-600",
 };
 
