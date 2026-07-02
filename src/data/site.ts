@@ -80,13 +80,13 @@ export const site = {
       {
         branch: "동광주점",
         year: "2023.07",
-        members: "2만+",
+        members: "3만+",
         size: "700평",
       },
       {
         branch: "첨단점",
         year: "2024.07",
-        members: "2만+",
+        members: "3만+",
         size: "1000평",
       },
     ],
